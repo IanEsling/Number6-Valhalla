@@ -10,10 +10,12 @@ import dev.number6.db.port.DatabasePort;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
 
+import javax.inject.Singleton;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.function.BiConsumer;
 
+@Singleton
 public class DynamoDatabaseAdaptor implements DatabasePort {
 
     private final DynamoDBMapper mapper;

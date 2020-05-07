@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,7 +28,8 @@
         <assertj.version>3.11.1</assertj.version>
         <mockito.version>2.18.3</mockito.version>
         <fyodor.version>1.0.0</fyodor.version>
-        <dagger.version>2.26</dagger.version>
+        <micronaut.version>2.0.0.M2</micronaut.version>
+        <micronaut.test.version>1.1.5</micronaut.test.version>
     </properties>
 
     <dependencyManagement>
@@ -44,6 +45,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-function-aws</artifactId>
+            <version>2.0.0.M2</version>
+        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -79,11 +85,6 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-sns</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.dagger</groupId>
-            <artifactId>dagger</artifactId>
-            <version>${dagger.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -139,6 +140,18 @@
             <version>${fyodor.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.micronaut.test</groupId>
+            <artifactId>micronaut-test-junit5</artifactId>
+            <version>${micronaut.test.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-inject-java</artifactId>
+            <version>${micronaut.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -178,12 +191,32 @@
                 <configuration>
                     <annotationProcessorPaths>
                         <path>
-                            <groupId>com.google.dagger</groupId>
-                            <artifactId>dagger-compiler</artifactId>
-                            <version>2.16</version>
+                            <groupId>io.micronaut</groupId>
+                            <artifactId>micronaut-inject-java</artifactId>
+                            <version>${micronaut.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+                <!--                <executions>-->
+                <!--                    <execution>-->
+                <!--                        <id>test-compile</id>-->
+                <!--                        <goals>-->
+                <!--                            <goal>testCompile</goal>-->
+                <!--                        </goals>-->
+                <!--                        <configuration>-->
+                <!--                            <compilerArgs>-->
+                <!--                                <arg>-parameters</arg>-->
+                <!--                            </compilerArgs>-->
+                <!--                            <annotationProcessorPaths>-->
+                <!--                                <path>-->
+                <!--                                    <groupId>io.micronaut</groupId>-->
+                <!--                                    <artifactId>micronaut-inject-java</artifactId>-->
+                <!--                                    <version>${micronaut.version}</version>-->
+                <!--                                </path>-->
+                <!--                            </annotationProcessorPaths>-->
+                <!--                        </configuration>-->
+                <!--                    </execution>-->
+                <!--                </executions>-->
             </plugin>
         </plugins>
     </build>

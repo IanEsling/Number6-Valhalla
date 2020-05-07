@@ -1,18 +1,27 @@
 package dev.number6.slackreader;
 
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-import dev.number6.slackreader.dagger.DaggerSlackReaderComponent;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import io.micronaut.function.FunctionBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+import java.util.function.Function;
 
-public class SlackReaderRequestHandler implements RequestHandler<Map<String, Object>, String> {
+@FunctionBean("slack-reader")
+public class SlackReaderRequestHandler implements Function<Map<String, Object>, String> {
 
-    private final SlackReader handler = DaggerSlackReaderComponent.create().handler();
+    private static final Logger LOG = LoggerFactory.getLogger(SlackReaderRequestHandler.class);
+    private final LambdaLogger logger = new LambdaLoggingFacade(LOG);
+    private final SlackReader handler;
+
+    public SlackReaderRequestHandler(SlackReader handler) {
+        this.handler = handler;
+    }
 
     @Override
-    public String handleRequest(Map<String, Object> o, Context context) {
-        handler.handle(o, context.getLogger());
+    public String apply(Map<String, Object> o) {
+        handler.handle(o, logger);
         return "ok";
     }
 }

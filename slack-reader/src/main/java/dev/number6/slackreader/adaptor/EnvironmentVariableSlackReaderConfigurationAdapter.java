@@ -2,10 +2,12 @@ package dev.number6.slackreader.adaptor;
 
 import dev.number6.slackreader.port.SlackReaderConfigurationPort;
 
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+@Singleton
 public class EnvironmentVariableSlackReaderConfigurationAdapter implements SlackReaderConfigurationPort {
 
     private static final String SLACK_MSG_TOPIC_ARN = "SLACK_MSG_TOPIC_ARN";

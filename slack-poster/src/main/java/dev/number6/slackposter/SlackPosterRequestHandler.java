@@ -1,6 +1,5 @@
 package dev.number6.slackposter;
 
-import dev.number6.slackposter.dagger.DaggerSlackPosterComponent;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -10,7 +9,7 @@ import java.util.Map;
 
 public class SlackPosterRequestHandler implements RequestHandler<DynamodbEvent, String> {
 
-    private SlackService slackService = DaggerSlackPosterComponent.create().handler();
+    private SlackService slackService;// = DaggerSlackPosterComponent.create().handler();
 
     @Override
     public String handleRequest(DynamodbEvent o, Context context) {

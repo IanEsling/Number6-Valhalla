@@ -6,6 +6,7 @@ import dev.number6.slack.port.HttpPort;
 import dev.number6.slackreader.model.*;
 import dev.number6.slackreader.port.SlackPort;
 
+import javax.inject.Singleton;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Singleton
 public class SlackReaderAdaptor extends SlackClientAdaptor implements SlackPort {
 
     public SlackReaderAdaptor(HttpPort client) {

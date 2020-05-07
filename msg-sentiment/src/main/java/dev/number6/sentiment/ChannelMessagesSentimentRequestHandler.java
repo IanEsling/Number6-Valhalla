@@ -1,11 +1,17 @@
 package dev.number6.sentiment;
 
+import dev.number6.message.ChannelMessages;
+import dev.number6.message.ChannelMessagesHandler;
 import dev.number6.message.ChannelMessagesNotificationRequestHandler;
-import dev.number6.sentiment.dagger.DaggerChannelMessagesSentimentComprehensionComponent;
 
 public class ChannelMessagesSentimentRequestHandler extends ChannelMessagesNotificationRequestHandler {
 
     public ChannelMessagesSentimentRequestHandler() {
-        super(DaggerChannelMessagesSentimentComprehensionComponent.create().getChannelMessagesHandler());
+        super(new ChannelMessagesHandler() {
+            @Override
+            public void handle(ChannelMessages channelMessages) {
+
+            }
+        });
     }
 }

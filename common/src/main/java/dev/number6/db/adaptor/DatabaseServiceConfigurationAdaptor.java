@@ -3,6 +3,9 @@ package dev.number6.db.adaptor;
 import dev.number6.db.port.DatabaseConfigurationPort;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class DatabaseServiceConfigurationAdaptor implements DatabaseConfigurationPort {
 
     public static final String DB_TABLE = "DB_TABLE";

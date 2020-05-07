@@ -18,20 +18,12 @@ import java.util.Objects;
 public class OkHttpAdaptor implements HttpPort {
 
     public static final String BEARER_TOKEN_VALUE = "Bearer %s";
-    private Call.Factory client;
-    private SecretsPort secretsPort;
+    private final Call.Factory client;
+    private final SecretsPort secretsPort;
 
     public OkHttpAdaptor(Call.Factory client, SecretsPort secretsPort) {
         this.client = client;
         this.secretsPort = secretsPort;
-    }
-
-    private CallResponse makeHttpCall(OkHttpRequestAdaptor request) {
-        try {
-            return new CallResponse(Objects.requireNonNull(client.newCall(request.valueOf()).execute().body()).string());
-        } catch (IOException e) {
-            return new CallResponse(e);
-        }
     }
 
     @Override
@@ -44,6 +36,13 @@ public class OkHttpAdaptor implements HttpPort {
         return makeHttpCall(buildPostRequestForUrl(url, body, logger));
     }
 
+    private CallResponse makeHttpCall(OkHttpRequestAdaptor request) {
+        try {
+            return new CallResponse(Objects.requireNonNull(client.newCall(request.valueOf()).execute().body()).string());
+        } catch (IOException e) {
+            return new CallResponse(e);
+        }
+    }
 
     private OkHttpRequestAdaptor buildGetRequestForUrl(String url, LambdaLogger logger) {
         return new OkHttpRequestAdaptor(buildCommonRequest(url, logger)

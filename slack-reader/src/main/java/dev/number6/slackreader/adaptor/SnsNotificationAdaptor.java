@@ -7,6 +7,9 @@ import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.google.gson.Gson;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class SnsNotificationAdaptor implements NotificationPort {
 
     private final Gson gson = new Gson();

@@ -8,9 +8,11 @@ import com.amazonaws.services.secretsmanager.model.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import javax.inject.Singleton;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+@Singleton
 public class AWSSecretsAdaptor implements SecretsPort {
 
     private final Gson gson = new Gson();

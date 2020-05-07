@@ -1,11 +1,17 @@
 package dev.number6.entity;
 
-import dev.number6.entity.dagger.DaggerChannelMessagesEntityComprehensionComponent;
+import dev.number6.message.ChannelMessages;
+import dev.number6.message.ChannelMessagesHandler;
 import dev.number6.message.ChannelMessagesNotificationRequestHandler;
 
 public class ChannelMessagesEntityRequestHandler extends ChannelMessagesNotificationRequestHandler {
 
     public ChannelMessagesEntityRequestHandler() {
-        super(DaggerChannelMessagesEntityComprehensionComponent.create().getChannelMessagesHandler());
+        super(new ChannelMessagesHandler() {
+            @Override
+            public void handle(ChannelMessages channelMessages) {
+
+            }
+        });
     }
 }

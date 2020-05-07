@@ -1,15 +1,16 @@
-package dev.number6.db.dagger;
+package dev.number6.db.mn;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import dagger.Module;
-import dagger.Provides;
+import io.micronaut.context.annotation.Factory;
 
-@Module
-public class DynamoDBMapperModule {
+import javax.inject.Singleton;
 
-    @Provides
+@Factory
+public class DynamoFactory {
+
+    @Singleton
     public DynamoDBMapper dbMapper() {
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.defaultClient();
         return new DynamoDBMapper(client);

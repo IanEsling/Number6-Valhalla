@@ -6,10 +6,12 @@ import dev.number6.slackreader.port.SlackPort;
 import dev.number6.slackreader.port.SlackReaderConfigurationPort;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
+import javax.inject.Singleton;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@Singleton
 public class SlackService {
     private final SlackPort slackPort;
     private final SlackReaderConfigurationPort config;
