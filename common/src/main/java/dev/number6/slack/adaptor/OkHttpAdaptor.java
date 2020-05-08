@@ -2,7 +2,6 @@ package dev.number6.slack.adaptor;
 
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import dev.number6.slack.CallResponse;
-import dev.number6.slack.OkHttpRequestAdaptor;
 import dev.number6.slack.port.HttpPort;
 import dev.number6.slack.port.SecretsPort;
 import okhttp3.Call;
@@ -12,9 +11,11 @@ import okhttp3.RequestBody;
 import org.apache.http.HttpHeaders;
 import org.apache.http.entity.ContentType;
 
+import javax.inject.Singleton;
 import java.io.IOException;
 import java.util.Objects;
 
+@Singleton
 public class OkHttpAdaptor implements HttpPort {
 
     public static final String BEARER_TOKEN_VALUE = "Bearer %s";
@@ -51,7 +52,7 @@ public class OkHttpAdaptor implements HttpPort {
     }
 
     private OkHttpRequestAdaptor buildPostRequestForUrl(String url, String body, LambdaLogger logger) {
-        var builder = buildCommonRequest(url, logger);
+        Request.Builder builder = buildCommonRequest(url, logger);
         if (!body.isEmpty()) {
             builder = builder.post(RequestBody.create(MediaType.parse("application/json"), body));
         }

@@ -1,4 +1,4 @@
-package dev.number6.slack;
+package dev.number6.slack.adaptor;
 
 import dev.number6.slack.port.RequestPort;
 import okhttp3.Request;

@@ -1,7 +1,7 @@
 package dev.number6.slack;
 
-import dev.number6.slack.port.HttpPort;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import dev.number6.slack.port.HttpPort;
 
 public class FakeHttpAdaptor implements HttpPort {
 

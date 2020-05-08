@@ -6,8 +6,10 @@ import dev.number6.slack.CallResponse;
 import dev.number6.slack.port.HttpPort;
 import dev.number6.slack.port.SlackPort;
 
+import javax.inject.Singleton;
 import java.util.Optional;
 
+@Singleton
 public class SlackClientAdaptor implements SlackPort {
 
     public static final String CHANNEL_LIST_URL = "https://slack.com/api/channels.list";
