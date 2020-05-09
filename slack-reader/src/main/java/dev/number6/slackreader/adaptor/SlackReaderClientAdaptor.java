@@ -15,9 +15,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Singleton
-public class SlackReaderAdaptor extends SlackClientAdaptor implements SlackPort {
+public class SlackReaderClientAdaptor extends SlackClientAdaptor implements SlackPort {
 
-    public SlackReaderAdaptor(HttpPort client) {
+    public SlackReaderClientAdaptor(HttpPort client) {
         super(client);
     }
 

@@ -2,6 +2,9 @@ package dev.number6.slackposter.adaptor;
 
 import dev.number6.slackposter.port.SlackPosterConfigurationPort;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class EnvironmentVariableSlackPosterConfigurationAdaptor implements SlackPosterConfigurationPort {
 
     public static final String META_CHANNEL_ID = "META_CHANNEL_ID";

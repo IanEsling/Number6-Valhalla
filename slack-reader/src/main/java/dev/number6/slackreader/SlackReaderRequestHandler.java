@@ -1,6 +1,7 @@
 package dev.number6.slackreader;
 
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import dev.number6.slack.LambdaLoggingFacade;
 import io.micronaut.function.FunctionBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

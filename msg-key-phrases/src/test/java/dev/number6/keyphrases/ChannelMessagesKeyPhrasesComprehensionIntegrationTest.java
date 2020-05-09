@@ -59,7 +59,7 @@ class ChannelMessagesKeyPhrasesComprehensionIntegrationTest {
 
         Context mockContext = mock(Context.class);
         when(mockContext.getLogger()).thenReturn(mock(LambdaLogger.class));
-        testee.handleRequest(event, mockContext);
+        testee.apply(event);
 
         verify(mockDatabase).save(entityResults);
     }

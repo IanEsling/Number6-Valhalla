@@ -1,4 +1,4 @@
-package dev.number6.slackreader;
+package dev.number6.slack;
 
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import org.slf4j.Logger;

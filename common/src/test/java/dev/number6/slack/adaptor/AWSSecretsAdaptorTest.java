@@ -1,11 +1,10 @@
-package dev.number6.slackreader;
+package dev.number6.slack.adaptor;
 
-import dev.number6.slack.adaptor.AWSSecretsAdaptor;
-import dev.number6.slack.port.SecretsConfigurationPort;
-import dev.number6.slackreader.generate.SlackReaderRDG;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.model.GetSecretValueResult;
+import dev.number6.generate.CommonRDG;
+import dev.number6.slack.port.SecretsConfigurationPort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +19,9 @@ class AWSSecretsAdaptorTest {
     private static final String SECRET_TOKEN = "Secret Token";
     private final SecretsConfigurationPort config = mock(SecretsConfigurationPort.class);
     private final AWSSecretsManager aws = mock(AWSSecretsManager.class);
+    private final LambdaLogger logger = mock(LambdaLogger.class);
     private AWSSecretsAdaptor testee;
     private GetSecretValueResult result;
-    private final LambdaLogger logger = mock(LambdaLogger.class);
 
     @BeforeEach
     void setup() {
@@ -46,7 +45,7 @@ class AWSSecretsAdaptorTest {
 
         assertThat(testee.getSlackTokenSecret(logger)).isEqualTo(SECRET_TOKEN);
 
-        result = new GetSecretValueResult().withSecretString(SlackReaderRDG.string().next());
+        result = new GetSecretValueResult().withSecretString(CommonRDG.string().next());
         when(aws.getSecretValue(any())).thenReturn(result);
 
         assertThat(testee.getSlackTokenSecret(logger)).isEqualTo(SECRET_TOKEN);

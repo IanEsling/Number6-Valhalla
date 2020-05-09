@@ -5,12 +5,13 @@ import dev.number6.slackposter.model.PresentableChannelSummary;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class SlackService {
 
     private SlackPort slackPort;
 
-    @Inject
     public SlackService(SlackPort slackPort) {
         this.slackPort = slackPort;
     }

@@ -4,6 +4,9 @@ import dev.number6.slackreader.model.WorkspaceMessages;
 import dev.number6.slackreader.port.NotificationPort;
 import dev.number6.message.ChannelMessages;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class SnsService {
 
     private final NotificationPort notifications;

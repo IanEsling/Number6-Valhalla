@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import dev.number6.slack.CallResponse;
 import dev.number6.slack.adaptor.SlackClientAdaptor;
 import dev.number6.slack.port.HttpPort;
-import dev.number6.slackreader.adaptor.SlackReaderAdaptor;
+import dev.number6.slackreader.adaptor.SlackReaderClientAdaptor;
 import dev.number6.slackreader.generate.SlackReaderRDG;
 import dev.number6.slackreader.model.*;
 import dev.number6.slackreader.port.SlackPort;
@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class SlackReaderAdaptorTest {
+class SlackReaderClientAdaptorTest {
 
     private final Gson gson = new Gson();
 
@@ -38,7 +38,7 @@ class SlackReaderAdaptorTest {
 
     @BeforeEach
     void setup() {
-        testee = new SlackReaderAdaptor(httpClient);
+        testee = new SlackReaderClientAdaptor(httpClient);
     }
 
     @Test
