@@ -3,6 +3,9 @@ package dev.number6.comprehend;
 import com.amazonaws.services.comprehend.AmazonComprehend;
 import com.amazonaws.services.comprehend.model.*;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class AwsComprehendClient {
 
     private static final String LANGUAGE_CODE = "en";

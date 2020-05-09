@@ -15,7 +15,6 @@ import java.util.Map;
 @Singleton
 public class AWSSecretsAdaptor implements SecretsPort {
 
-    private final Gson gson = new Gson();
     private final AWSSecretsManager aws;
     private final SecretsConfigurationPort config;
     private String secret = null;

@@ -6,6 +6,9 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.SNSEvent;
 import com.google.gson.Gson;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class ChannelMessagesNotificationRequestHandler implements RequestHandler<SNSEvent, String> {
 
     private final Gson gson = new Gson();

@@ -1,5 +1,7 @@
 package dev.number6.db.adaptor;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.IDynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
 import dev.number6.comprehend.results.ComprehensionResults;
 import dev.number6.comprehend.results.PresentableEntityResults;
 import dev.number6.comprehend.results.PresentableKeyPhrasesResults;
@@ -7,8 +9,6 @@ import dev.number6.comprehend.results.PresentableSentimentResults;
 import dev.number6.db.model.ChannelComprehensionSummary;
 import dev.number6.db.port.DatabaseConfigurationPort;
 import dev.number6.db.port.DatabasePort;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
 
 import javax.inject.Singleton;
 import java.time.LocalDate;
@@ -18,10 +18,10 @@ import java.util.function.BiConsumer;
 @Singleton
 public class DynamoDatabaseAdaptor implements DatabasePort {
 
-    private final DynamoDBMapper mapper;
+    private final IDynamoDBMapper mapper;
     private final DatabaseConfigurationPort dbConfig;
 
-    public DynamoDatabaseAdaptor(DynamoDBMapper mapper, DatabaseConfigurationPort dbConfig) {
+    public DynamoDatabaseAdaptor(IDynamoDBMapper mapper, DatabaseConfigurationPort dbConfig) {
         this.mapper = mapper;
         this.dbConfig = dbConfig;
     }

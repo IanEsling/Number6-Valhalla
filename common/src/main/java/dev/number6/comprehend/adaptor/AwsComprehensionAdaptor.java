@@ -8,12 +8,14 @@ import dev.number6.comprehend.port.ComprehensionPort;
 import dev.number6.message.ChannelMessages;
 import com.amazonaws.services.comprehend.model.*;
 
+import javax.inject.Singleton;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Singleton
 public class AwsComprehensionAdaptor implements ComprehensionPort {
 
     private final AwsComprehendClient awsComprehendClient;

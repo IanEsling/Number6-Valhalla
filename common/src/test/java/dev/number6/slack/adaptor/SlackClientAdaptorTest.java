@@ -1,10 +1,10 @@
 package dev.number6.slack.adaptor;
 
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import com.google.gson.Gson;
 import dev.number6.generate.CommonRDG;
 import dev.number6.slack.CallResponse;
 import dev.number6.slack.port.HttpPort;
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
-import com.google.gson.Gson;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,6 @@ import uk.org.fyodor.generators.Generator;
 import java.util.Objects;
 import java.util.Optional;
 
-import static dev.number6.SlackAssertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -31,9 +30,9 @@ class SlackClientAdaptorTest {
     @InjectMocks
     SlackClientAdaptor testee;
 
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
     private TestResponseObject testResponseObject;
-    private TestObjectGenerator testObjectGenerator = new TestObjectGenerator();
+    private final TestObjectGenerator testObjectGenerator = new TestObjectGenerator();
 
     @BeforeEach
     void setup() {

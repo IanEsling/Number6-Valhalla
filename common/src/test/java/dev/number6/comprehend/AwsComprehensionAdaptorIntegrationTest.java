@@ -1,6 +1,6 @@
-package dev.number6.slack;
+package dev.number6.comprehend;
 
-import dev.number6.slack.port.SlackPort;
+import dev.number6.comprehend.adaptor.AwsComprehensionAdaptor;
 import io.micronaut.test.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 
@@ -9,13 +9,13 @@ import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @MicronautTest
-public class SlackPortIntegrationTest {
+public class AwsComprehensionAdaptorIntegrationTest {
 
     @Inject
-    SlackPort slackPort;
+    AwsComprehensionAdaptor testee;
 
     @Test
     void wiring() {
-        assertThat(slackPort).isNotNull();
+        assertThat(testee).isNotNull();
     }
 }

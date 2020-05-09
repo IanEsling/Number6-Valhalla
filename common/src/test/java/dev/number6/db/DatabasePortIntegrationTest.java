@@ -1,6 +1,6 @@
-package dev.number6.slack;
+package dev.number6.db;
 
-import dev.number6.slack.port.SlackPort;
+import dev.number6.db.port.DatabasePort;
 import io.micronaut.test.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 
@@ -9,13 +9,13 @@ import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @MicronautTest
-public class SlackPortIntegrationTest {
+public class DatabasePortIntegrationTest {
 
     @Inject
-    SlackPort slackPort;
+    DatabasePort testee;
 
     @Test
     void wiring() {
-        assertThat(slackPort).isNotNull();
+        assertThat(testee).isNotNull();
     }
 }
