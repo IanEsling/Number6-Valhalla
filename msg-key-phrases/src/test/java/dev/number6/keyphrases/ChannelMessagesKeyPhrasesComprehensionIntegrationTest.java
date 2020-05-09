@@ -1,11 +1,12 @@
-package dev.number6.entity;
+package dev.number6.keyphrases;
+
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.events.SNSEvent;
 import com.google.gson.Gson;
 import dev.number6.comprehend.port.ComprehensionPort;
-import dev.number6.comprehend.results.PresentableEntityResults;
+import dev.number6.comprehend.results.PresentableKeyPhrasesResults;
 import dev.number6.db.port.DatabasePort;
 import dev.number6.message.ChannelMessages;
 import dev.number6.message.ChannelMessagesNotificationRequestHandler;
@@ -23,7 +24,8 @@ import java.util.Map;
 import static org.mockito.Mockito.*;
 
 @MicronautTest
-class ChannelMessagesEntityComprehensionIntegrationTest {
+class ChannelMessagesKeyPhrasesComprehensionIntegrationTest {
+
 
     private final ComprehensionPort mockComprehend = mock(ComprehensionPort.class);
     private final DatabasePort mockDatabase = mock(DatabasePort.class);
@@ -52,8 +54,8 @@ class ChannelMessagesEntityComprehensionIntegrationTest {
         SNSEvent event = new SNSEvent();
         event.setRecords(List.of(record));
 
-        PresentableEntityResults entityResults = new PresentableEntityResultsGenerator().next();
-        when(mockComprehend.getEntitiesForSlackMessages(messages)).thenReturn(entityResults);
+        PresentableKeyPhrasesResults entityResults = new PresentableKeyPhrasesResultsGenerator().next();
+        when(mockComprehend.getKeyPhrasesForSlackMessages(messages)).thenReturn(entityResults);
 
         Context mockContext = mock(Context.class);
         when(mockContext.getLogger()).thenReturn(mock(LambdaLogger.class));
@@ -70,14 +72,14 @@ class ChannelMessagesEntityComprehensionIntegrationTest {
         }
     }
 
-    public static class PresentableEntityResultsGenerator implements Generator<PresentableEntityResults> {
+    public static class PresentableKeyPhrasesResultsGenerator implements Generator<PresentableKeyPhrasesResults> {
 
-        Generator<Map<String, Map<String, Long>>> entityResultsGenerator = RDG.map(RDG.string(10),
-                RDG.map(RDG.string(10), RDG.longVal(100)));
+        Generator<Map<String, Long>> keyPhrasesResultsGenerator = RDG.map(RDG.string(10),
+                RDG.longVal(100));
 
         @Override
-        public PresentableEntityResults next() {
-            return new PresentableEntityResults(LocalDate.now(), entityResultsGenerator.next(), RDG.string().next());
+        public PresentableKeyPhrasesResults next() {
+            return new PresentableKeyPhrasesResults(LocalDate.now(), keyPhrasesResultsGenerator.next(), RDG.string().next());
         }
     }
 }

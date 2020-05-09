@@ -1,0 +1,25 @@
+package dev.number6.sentiment;
+
+import dev.number6.comprehend.port.ComprehensionPort;
+import dev.number6.comprehend.results.PresentableKeyPhrasesResults;
+import dev.number6.comprehend.results.PresentableSentimentResults;
+import dev.number6.db.port.DatabasePort;
+import dev.number6.message.ChannelMessagesToComprehensionResultsFunction;
+import dev.number6.message.ComprehensionResultsConsumer;
+import io.micronaut.context.annotation.Factory;
+
+import javax.inject.Singleton;
+
+@Factory
+public class ComprehensionResultsFactory {
+
+    @Singleton
+    public ChannelMessagesToComprehensionResultsFunction<PresentableSentimentResults> providesMessageToEntityResults(ComprehensionPort comprehensionPort) {
+        return comprehensionPort::getSentimentForSlackMessages;
+    }
+
+    @Singleton
+    public ComprehensionResultsConsumer<PresentableSentimentResults> providesEntityResultsConsumer(DatabasePort databasePort) {
+        return databasePort::save;
+    }
+}
