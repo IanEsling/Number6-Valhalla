@@ -26,7 +26,7 @@ Resources:
   MessageSentimentFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dev.number6.sentiment.ChannelMessagesSentimentRequestHandler::handleRequest
+      Handler: io.micronaut.function.aws.MicronautRequestStreamHandler
       Runtime: java11
       CodeUri: ./sentiment
       Timeout: 180
@@ -47,7 +47,7 @@ Resources:
   MessageEntityFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dev.number6.entity.ChannelMessagesEntityRequestHandler::handleRequest
+      Handler: io.micronaut.function.aws.MicronautRequestStreamHandler
       Runtime: java11
       CodeUri: ./entity
       Timeout: 180
@@ -68,7 +68,7 @@ Resources:
   MessageKeyPhrasesFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dev.number6.keyphrases.ChannelMessagesKeyPhrasesRequestHandler::handleRequest
+      Handler: io.micronaut.function.aws.MicronautRequestStreamHandler
       Runtime: java11
       CodeUri: ./phrases
       Timeout: 180
@@ -89,7 +89,7 @@ Resources:
   SlackReaderFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dev.number6.slackreader.SlackReaderRequestHandler::handleRequest
+      Handler: io.micronaut.function.aws.MicronautRequestStreamHandler
       Runtime: java11
       CodeUri: ./reader
       Timeout: 180
@@ -113,7 +113,7 @@ Resources:
   ProcessComprehensionsStream:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dev.number6.slackposter.SlackPosterRequestHandler::handleRequest
+      Handler: io.micronaut.function.aws.MicronautRequestStreamHandler
       Runtime: java11
       CodeUri: ./poster
       Timeout: 180
