@@ -11,7 +11,6 @@ import dev.number6.comprehend.port.ComprehensionPort;
 import dev.number6.comprehend.results.PresentableSentimentResults;
 import dev.number6.db.port.DatabasePort;
 import dev.number6.message.ChannelMessages;
-import dev.number6.message.ChannelMessagesNotificationRequestHandler;
 import io.micronaut.test.annotation.MicronautTest;
 import io.micronaut.test.annotation.MockBean;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ class ChannelMessagesSentimentComprehensionIntegrationTest {
     Gson gson = new Gson();
     ChannelMessagesGenerator channelMessagesGenerator = new ChannelMessagesGenerator();
     @Inject
-    ChannelMessagesNotificationRequestHandler testee;
+    ChannelMessagesRequestHandler testee;
 
     public static float sentimentScoreFloat() {
         return RDG.doubleVal(1d).next().floatValue();

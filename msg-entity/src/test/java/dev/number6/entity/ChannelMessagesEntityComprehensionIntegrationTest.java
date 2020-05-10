@@ -8,7 +8,6 @@ import dev.number6.comprehend.port.ComprehensionPort;
 import dev.number6.comprehend.results.PresentableEntityResults;
 import dev.number6.db.port.DatabasePort;
 import dev.number6.message.ChannelMessages;
-import dev.number6.message.ChannelMessagesNotificationRequestHandler;
 import io.micronaut.test.annotation.MicronautTest;
 import io.micronaut.test.annotation.MockBean;
 import org.junit.jupiter.api.Test;
@@ -30,7 +29,7 @@ class ChannelMessagesEntityComprehensionIntegrationTest {
     Gson gson = new Gson();
     ChannelMessagesGenerator channelMessagesGenerator = new ChannelMessagesGenerator();
     @Inject
-    ChannelMessagesNotificationRequestHandler testee;
+    ChannelMessagesRequestHandler testee;
 
     @MockBean(ComprehensionPort.class)
     ComprehensionPort comprehendClient() {
