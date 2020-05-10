@@ -1,10 +1,9 @@
 package dev.number6.slackreader;
 
-import dev.number6.db.port.DatabasePort;
-import dev.number6.slackreader.model.WorkspaceMessages;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import dev.number6.db.port.BasicDatabasePort;
+import dev.number6.slackreader.model.WorkspaceMessages;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.time.Clock;
 import java.time.LocalDate;
@@ -16,12 +15,12 @@ public class SlackReader {
     public static final String COMPREHENSION_DATE_FIELD_NAME = "comprehensionDate";
     private final SlackService slackService;
     private final SnsService snsService;
-    private final DatabasePort dbService;
+    private final BasicDatabasePort dbService;
     private final Clock clock;
 
     public SlackReader(SlackService slackService,
                        SnsService snsService,
-                       DatabasePort dbService,
+                       BasicDatabasePort dbService,
                        Clock clock) {
 
         this.slackService = slackService;

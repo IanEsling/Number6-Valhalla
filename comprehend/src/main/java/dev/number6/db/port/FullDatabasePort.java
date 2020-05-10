@@ -7,9 +7,7 @@ import dev.number6.comprehend.results.PresentableSentimentResults;
 import java.time.LocalDate;
 import java.util.Collection;
 
-public interface DatabasePort {
-
-    void createNewSummaryForChannels(Collection<String> channelNames, LocalDate comprehensionDate);
+public interface FullDatabasePort extends BasicDatabasePort {
 
     void save(PresentableSentimentResults results);
 

@@ -7,7 +7,7 @@ import com.amazonaws.services.lambda.runtime.events.SNSEvent;
 import com.google.gson.Gson;
 import dev.number6.comprehend.port.ComprehensionPort;
 import dev.number6.comprehend.results.PresentableKeyPhrasesResults;
-import dev.number6.db.port.DatabasePort;
+import dev.number6.db.port.FullDatabasePort;
 import dev.number6.message.ChannelMessages;
 import io.micronaut.test.annotation.MicronautTest;
 import io.micronaut.test.annotation.MockBean;
@@ -27,7 +27,7 @@ class ChannelMessagesKeyPhrasesComprehensionIntegrationTest {
 
 
     private final ComprehensionPort mockComprehend = mock(ComprehensionPort.class);
-    private final DatabasePort mockDatabase = mock(DatabasePort.class);
+    private final FullDatabasePort mockDatabase = mock(FullDatabasePort.class);
     Gson gson = new Gson();
     ChannelMessagesGenerator channelMessagesGenerator = new ChannelMessagesGenerator();
     @Inject
@@ -38,8 +38,8 @@ class ChannelMessagesKeyPhrasesComprehensionIntegrationTest {
         return mockComprehend;
     }
 
-    @MockBean(DatabasePort.class)
-    DatabasePort dbMapper() {
+    @MockBean(FullDatabasePort.class)
+    FullDatabasePort dbMapper() {
         return mockDatabase;
     }
 

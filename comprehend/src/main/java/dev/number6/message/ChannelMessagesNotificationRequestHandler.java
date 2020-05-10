@@ -2,7 +2,6 @@ package dev.number6.message;
 
 import com.amazonaws.services.lambda.runtime.events.SNSEvent;
 import com.google.gson.Gson;
-import io.micronaut.function.FunctionBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

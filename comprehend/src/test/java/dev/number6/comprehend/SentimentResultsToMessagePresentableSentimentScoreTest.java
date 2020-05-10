@@ -1,8 +1,8 @@
 package dev.number6.comprehend;
 
-import dev.number6.comprehend.results.SentimentResultsToMessageSentimentScore;
 import com.amazonaws.services.comprehend.model.DetectSentimentResult;
 import com.amazonaws.services.comprehend.model.SentimentScore;
+import dev.number6.comprehend.results.SentimentResultsToMessageSentimentScore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

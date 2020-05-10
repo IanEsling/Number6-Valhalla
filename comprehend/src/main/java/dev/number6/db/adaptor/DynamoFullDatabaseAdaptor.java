@@ -8,7 +8,7 @@ import dev.number6.comprehend.results.PresentableKeyPhrasesResults;
 import dev.number6.comprehend.results.PresentableSentimentResults;
 import dev.number6.db.model.ChannelComprehensionSummary;
 import dev.number6.db.port.DatabaseConfigurationPort;
-import dev.number6.db.port.DatabasePort;
+import dev.number6.db.port.FullDatabasePort;
 
 import javax.inject.Singleton;
 import java.time.LocalDate;
@@ -16,14 +16,10 @@ import java.util.Collection;
 import java.util.function.BiConsumer;
 
 @Singleton
-public class DynamoDatabaseAdaptor implements DatabasePort {
+public class DynamoFullDatabaseAdaptor extends DynamoBasicDatabaseAdaptor implements FullDatabasePort {
 
-    private final IDynamoDBMapper mapper;
-    private final DatabaseConfigurationPort dbConfig;
-
-    public DynamoDatabaseAdaptor(IDynamoDBMapper mapper, DatabaseConfigurationPort dbConfig) {
-        this.mapper = mapper;
-        this.dbConfig = dbConfig;
+    public DynamoFullDatabaseAdaptor(IDynamoDBMapper mapper, DatabaseConfigurationPort dbConfig) {
+        super(mapper, dbConfig);
     }
 
     @Override

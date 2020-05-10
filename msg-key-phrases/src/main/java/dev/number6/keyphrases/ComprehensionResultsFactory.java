@@ -1,9 +1,8 @@
 package dev.number6.keyphrases;
 
 import dev.number6.comprehend.port.ComprehensionPort;
-import dev.number6.comprehend.results.PresentableEntityResults;
 import dev.number6.comprehend.results.PresentableKeyPhrasesResults;
-import dev.number6.db.port.DatabasePort;
+import dev.number6.db.port.FullDatabasePort;
 import dev.number6.message.ChannelMessagesComprehensionHandler;
 import dev.number6.message.ChannelMessagesToComprehensionResultsFunction;
 import dev.number6.message.ComprehensionResultsConsumer;
@@ -20,7 +19,7 @@ public class ComprehensionResultsFactory {
     }
 
     @Singleton
-    public ComprehensionResultsConsumer<PresentableKeyPhrasesResults> providesEntityResultsConsumer(DatabasePort databasePort) {
+    public ComprehensionResultsConsumer<PresentableKeyPhrasesResults> providesEntityResultsConsumer(FullDatabasePort databasePort) {
         return databasePort::save;
     }
 

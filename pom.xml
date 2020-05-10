@@ -9,12 +9,13 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>common</module>
+        <module>comprehend</module>
         <module>msg-entity</module>
         <module>msg-key-phrases</module>
         <module>msg-sentiment</module>
+        <module>slack</module>
         <module>slack-poster</module>
         <module>slack-reader</module>
-        <module>slack</module>
     </modules>
     <packaging>pom</packaging>
 

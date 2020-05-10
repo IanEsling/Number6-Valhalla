@@ -1,8 +1,8 @@
 package dev.number6.generate;
 
 
-import dev.number6.comprehend.results.PresentableSentimentResults;
 import com.amazonaws.services.comprehend.model.DetectSentimentResult;
+import dev.number6.comprehend.results.PresentableSentimentResults;
 import uk.org.fyodor.generators.Generator;
 import uk.org.fyodor.range.Range;
 

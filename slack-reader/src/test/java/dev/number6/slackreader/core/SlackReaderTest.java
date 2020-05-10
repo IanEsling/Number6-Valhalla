@@ -1,12 +1,12 @@
 package dev.number6.slackreader.core;
 
-import dev.number6.db.adaptor.DynamoDatabaseAdaptor;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import dev.number6.db.adaptor.DynamoBasicDatabaseAdaptor;
 import dev.number6.slackreader.SlackReader;
 import dev.number6.slackreader.SlackService;
 import dev.number6.slackreader.SnsService;
-import dev.number6.slackreader.model.WorkspaceMessages;
 import dev.number6.slackreader.generate.SlackReaderRDG;
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import dev.number6.slackreader.model.WorkspaceMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
@@ -28,7 +28,7 @@ public class SlackReaderTest {
     private final LambdaLogger logger = mock(LambdaLogger.class);
     private final SlackService slackService = mock(SlackService.class);
     private final SnsService snsService = mock(SnsService.class);
-    private final DynamoDatabaseAdaptor dbService = mock(DynamoDatabaseAdaptor.class);
+    private final DynamoBasicDatabaseAdaptor dbService = mock(DynamoBasicDatabaseAdaptor.class);
     private final Clock clock = Clock.fixed(Instant.now().minus(SlackReaderRDG.longVal(10L).next(), ChronoUnit.DAYS), ZoneId.systemDefault());
     private SlackReader testee;
 
