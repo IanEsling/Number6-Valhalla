@@ -1,9 +1,9 @@
 package dev.number6.sentiment;
 
 import dev.number6.comprehend.port.ComprehensionPort;
-import dev.number6.comprehend.results.PresentableKeyPhrasesResults;
 import dev.number6.comprehend.results.PresentableSentimentResults;
 import dev.number6.db.port.DatabasePort;
+import dev.number6.message.ChannelMessagesComprehensionHandler;
 import dev.number6.message.ChannelMessagesToComprehensionResultsFunction;
 import dev.number6.message.ComprehensionResultsConsumer;
 import io.micronaut.context.annotation.Factory;
@@ -21,5 +21,12 @@ public class ComprehensionResultsFactory {
     @Singleton
     public ComprehensionResultsConsumer<PresentableSentimentResults> providesEntityResultsConsumer(DatabasePort databasePort) {
         return databasePort::save;
+    }
+
+    @Singleton
+    public ChannelMessagesComprehensionHandler<PresentableSentimentResults> handler(
+            ChannelMessagesToComprehensionResultsFunction<PresentableSentimentResults> function,
+            ComprehensionResultsConsumer<PresentableSentimentResults> consumer) {
+        return new ChannelMessagesComprehensionHandler<>(function, consumer);
     }
 }

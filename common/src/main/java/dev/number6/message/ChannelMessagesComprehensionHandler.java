@@ -2,9 +2,6 @@ package dev.number6.message;
 
 import dev.number6.comprehend.results.ComprehensionResults;
 
-import javax.inject.Singleton;
-
-@Singleton
 public class ChannelMessagesComprehensionHandler<T extends ComprehensionResults<?>>
         implements ChannelMessagesHandler {
 
