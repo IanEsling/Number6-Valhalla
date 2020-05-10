@@ -14,6 +14,7 @@
         <module>msg-sentiment</module>
         <module>slack-poster</module>
         <module>slack-reader</module>
+        <module>slack</module>
     </modules>
     <packaging>pom</packaging>
 

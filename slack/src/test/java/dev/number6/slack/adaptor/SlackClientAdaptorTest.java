@@ -2,7 +2,6 @@ package dev.number6.slack.adaptor;
 
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.google.gson.Gson;
-import dev.number6.generate.CommonRDG;
 import dev.number6.slack.CallResponse;
 import dev.number6.slack.port.HttpPort;
 import org.assertj.core.api.Assertions;
@@ -13,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.org.fyodor.generators.Generator;
+import uk.org.fyodor.generators.RDG;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -23,16 +23,15 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class SlackClientAdaptorTest {
 
+    private final Gson gson = new Gson();
+    private final TestObjectGenerator testObjectGenerator = new TestObjectGenerator();
     @Mock
     LambdaLogger logger;
     @Mock
     HttpPort http;
     @InjectMocks
     SlackClientAdaptor testee;
-
-    private final Gson gson = new Gson();
     private TestResponseObject testResponseObject;
-    private final TestObjectGenerator testObjectGenerator = new TestObjectGenerator();
 
     @BeforeEach
     void setup() {
@@ -96,9 +95,9 @@ class SlackClientAdaptorTest {
 
         @Override
         public TestResponseObject next() {
-            return new TestResponseObject(CommonRDG.integer(999).next(),
-                    CommonRDG.string(30).next(),
-                    CommonRDG.doubleVal(9999d).next());
+            return new TestResponseObject(RDG.integer(999).next(),
+                    RDG.string(30).next(),
+                    RDG.doubleVal(9999d).next());
         }
     }
 }

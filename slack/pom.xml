@@ -7,21 +7,10 @@
         <groupId>dev.number6</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>slack-reader</artifactId>
+    <artifactId>slack</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>dev.number6</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.number6</groupId>
-            <artifactId>slack</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 </project>

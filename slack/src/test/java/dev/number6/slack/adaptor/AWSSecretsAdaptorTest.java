@@ -3,10 +3,10 @@ package dev.number6.slack.adaptor;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.model.GetSecretValueResult;
-import dev.number6.generate.CommonRDG;
 import dev.number6.slack.port.SecretsConfigurationPort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import uk.org.fyodor.generators.RDG;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -45,7 +45,7 @@ class AWSSecretsAdaptorTest {
 
         assertThat(testee.getSlackTokenSecret(logger)).isEqualTo(SECRET_TOKEN);
 
-        result = new GetSecretValueResult().withSecretString(CommonRDG.string().next());
+        result = new GetSecretValueResult().withSecretString(RDG.string().next());
         when(aws.getSecretValue(any())).thenReturn(result);
 
         assertThat(testee.getSlackTokenSecret(logger)).isEqualTo(SECRET_TOKEN);
