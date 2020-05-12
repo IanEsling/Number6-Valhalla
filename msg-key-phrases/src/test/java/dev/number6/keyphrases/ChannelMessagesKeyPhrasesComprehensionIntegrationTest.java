@@ -20,18 +20,18 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @MicronautTest
 class ChannelMessagesKeyPhrasesComprehensionIntegrationTest {
-
 
     private final ComprehensionPort mockComprehend = mock(ComprehensionPort.class);
     private final FullDatabasePort mockDatabase = mock(FullDatabasePort.class);
     Gson gson = new Gson();
     ChannelMessagesGenerator channelMessagesGenerator = new ChannelMessagesGenerator();
     @Inject
-    ChannelMessagesRequestHandler testee;
+    ChannelMessageKeyPhrasesComprehensionClient testee;
 
     @MockBean(ComprehensionPort.class)
     ComprehensionPort comprehendClient() {
@@ -53,14 +53,13 @@ class ChannelMessagesKeyPhrasesComprehensionIntegrationTest {
         SNSEvent event = new SNSEvent();
         event.setRecords(List.of(record));
 
-        PresentableKeyPhrasesResults entityResults = new PresentableKeyPhrasesResultsGenerator().next();
-        when(mockComprehend.getKeyPhrasesForSlackMessages(messages)).thenReturn(entityResults);
+        PresentableKeyPhrasesResults keyPhrasesResults = new PresentableKeyPhrasesResultsGenerator().next();
+        when(mockComprehend.getKeyPhrasesForSlackMessages(messages)).thenReturn(keyPhrasesResults);
 
-        Context mockContext = mock(Context.class);
-        when(mockContext.getLogger()).thenReturn(mock(LambdaLogger.class));
-        testee.apply(event);
+        String result = testee.apply(event).blockingGet();
 
-        verify(mockDatabase).save(entityResults);
+        assertThat(result).isEqualTo("ok");
+        verify(mockDatabase).save(keyPhrasesResults);
     }
 
     public static class ChannelMessagesGenerator implements Generator<ChannelMessages> {

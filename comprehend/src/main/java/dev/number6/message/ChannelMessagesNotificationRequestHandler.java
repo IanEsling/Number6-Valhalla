@@ -2,20 +2,25 @@ package dev.number6.message;
 
 import com.amazonaws.services.lambda.runtime.events.SNSEvent;
 import com.google.gson.Gson;
+import io.micronaut.function.FunctionBean;
+import io.micronaut.function.executor.FunctionInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import java.util.function.Function;
 
-public class ChannelMessagesNotificationRequestHandler implements Function<SNSEvent, String> {
+@FunctionBean("channel-messages")
+public class ChannelMessagesNotificationRequestHandler extends FunctionInitializer implements Function<SNSEvent, String> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChannelMessagesNotificationRequestHandler.class);
     private final Gson gson = new Gson();
-    private final ChannelMessagesHandler channelMessagesHandler;
+    @Inject
+    ChannelMessagesHandler channelMessagesHandler;
 
-    public ChannelMessagesNotificationRequestHandler(ChannelMessagesHandler channelMessagesHandler) {
-        this.channelMessagesHandler = channelMessagesHandler;
-    }
+//    public ChannelMessagesNotificationRequestHandler(ChannelMessagesHandler channelMessagesHandler) {
+//        this.channelMessagesHandler = channelMessagesHandler;
+//    }
 
 //    @Override
 //    public String handleRequest(SNSEvent event, Context context) {
@@ -42,4 +47,16 @@ public class ChannelMessagesNotificationRequestHandler implements Function<SNSEv
         channelMessagesHandler.handle(channelMessages);
         return "ok";
     }
+
+//    @Override
+//    public String execute(SNSEvent event) {
+//        LOG.debug("Starting SnsMessage Entity Comprehension.");
+//        LOG.debug("Received event: " + event);
+//        LOG.debug("containing " + event.getRecords().size() + " records.");
+//
+//        ChannelMessages channelMessages = gson.fromJson(event.getRecords().get(0).getSNS().getMessage(), ChannelMessages.class);
+//
+//        channelMessagesHandler.handle(channelMessages);
+//        return "ok";
+//    }
 }

@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @MicronautTest
@@ -29,7 +30,7 @@ class ChannelMessagesEntityComprehensionIntegrationTest {
     Gson gson = new Gson();
     ChannelMessagesGenerator channelMessagesGenerator = new ChannelMessagesGenerator();
     @Inject
-    ChannelMessagesRequestHandler testee;
+    ChannelMessageEntityComprehensionClient testee;
 
     @MockBean(ComprehensionPort.class)
     ComprehensionPort comprehendClient() {
@@ -56,8 +57,9 @@ class ChannelMessagesEntityComprehensionIntegrationTest {
 
         Context mockContext = mock(Context.class);
         when(mockContext.getLogger()).thenReturn(mock(LambdaLogger.class));
-        testee.apply(event);
+        String result = testee.apply(event).blockingGet();
 
+        assertThat(result).isEqualTo("ok");
         verify(mockDatabase).save(entityResults);
     }
 

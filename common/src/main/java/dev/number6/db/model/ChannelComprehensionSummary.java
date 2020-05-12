@@ -50,7 +50,6 @@ public class ChannelComprehensionSummary {
     }
 
     @DynamoDBAttribute
-//    @DynamoDBTypeConverted(converter = SentimentScoreConverter.class)
     public Map<String, Float> getSentimentScoreTotals() {
         return sentimentScoreTotals;
     }
@@ -60,7 +59,6 @@ public class ChannelComprehensionSummary {
     }
 
     @DynamoDBAttribute
-//    @DynamoDBTypeConverted(converter = SentimentTotalConverter.class)
     public Map<String,Integer> getSentimentTotals() {
         return sentimentTotals;
     }
@@ -70,7 +68,6 @@ public class ChannelComprehensionSummary {
     }
 
     @DynamoDBAttribute
-//    @DynamoDBTypeConverted(converter = EntityTotalConverter.class)
     public Map<String, Map<String, Long>> getEntityTotals() {
         return entityTotals;
     }

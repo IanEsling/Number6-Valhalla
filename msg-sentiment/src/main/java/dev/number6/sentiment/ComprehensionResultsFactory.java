@@ -22,11 +22,4 @@ public class ComprehensionResultsFactory {
     public ComprehensionResultsConsumer<PresentableSentimentResults> providesEntityResultsConsumer(FullDatabasePort databasePort) {
         return databasePort::save;
     }
-
-    @Singleton
-    public ChannelMessagesComprehensionHandler<PresentableSentimentResults> handler(
-            ChannelMessagesToComprehensionResultsFunction<PresentableSentimentResults> function,
-            ComprehensionResultsConsumer<PresentableSentimentResults> consumer) {
-        return new ChannelMessagesComprehensionHandler<>(function, consumer);
-    }
 }

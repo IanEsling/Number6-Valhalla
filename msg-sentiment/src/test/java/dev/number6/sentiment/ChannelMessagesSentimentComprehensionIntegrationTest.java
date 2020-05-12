@@ -3,8 +3,6 @@ package dev.number6.sentiment;
 import com.amazonaws.services.comprehend.model.DetectSentimentResult;
 import com.amazonaws.services.comprehend.model.SentimentScore;
 import com.amazonaws.services.comprehend.model.SentimentType;
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.events.SNSEvent;
 import com.google.gson.Gson;
 import dev.number6.comprehend.port.ComprehensionPort;
@@ -22,16 +20,18 @@ import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @MicronautTest
 class ChannelMessagesSentimentComprehensionIntegrationTest {
+
     private final ComprehensionPort mockComprehend = mock(ComprehensionPort.class);
     private final FullDatabasePort mockDatabase = mock(FullDatabasePort.class);
     Gson gson = new Gson();
     ChannelMessagesGenerator channelMessagesGenerator = new ChannelMessagesGenerator();
     @Inject
-    ChannelMessagesRequestHandler testee;
+    ChannelMessageSentimentComprehensionClient testee;
 
     public static float sentimentScoreFloat() {
         return RDG.doubleVal(1d).next().floatValue();
@@ -57,14 +57,13 @@ class ChannelMessagesSentimentComprehensionIntegrationTest {
         SNSEvent event = new SNSEvent();
         event.setRecords(List.of(record));
 
-        PresentableSentimentResults entityResults = new PresentableSentimentResultsGenerator().next();
-        when(mockComprehend.getSentimentForSlackMessages(messages)).thenReturn(entityResults);
+        PresentableSentimentResults sentimentResults = new PresentableSentimentResultsGenerator().next();
+        when(mockComprehend.getSentimentForSlackMessages(messages)).thenReturn(sentimentResults);
 
-        Context mockContext = mock(Context.class);
-        when(mockContext.getLogger()).thenReturn(mock(LambdaLogger.class));
-        testee.apply(event);
+        String result = testee.apply(event).blockingGet();
 
-        verify(mockDatabase).save(entityResults);
+        assertThat(result).isEqualTo("ok");
+        verify(mockDatabase).save(sentimentResults);
     }
 
     public static class ChannelMessagesGenerator implements Generator<ChannelMessages> {
@@ -74,6 +73,7 @@ class ChannelMessagesSentimentComprehensionIntegrationTest {
             return new ChannelMessages(RDG.string().next(), RDG.list(RDG.string()).next(), LocalDate.now());
         }
     }
+
 
     public static class PresentableSentimentResultsGenerator implements Generator<PresentableSentimentResults> {
 
