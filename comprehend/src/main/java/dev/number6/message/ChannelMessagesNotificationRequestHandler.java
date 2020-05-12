@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import java.util.function.Function;
 
-@FunctionBean("channel-messages")
+@FunctionBean
 public class ChannelMessagesNotificationRequestHandler extends FunctionInitializer implements Function<SNSEvent, String> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChannelMessagesNotificationRequestHandler.class);

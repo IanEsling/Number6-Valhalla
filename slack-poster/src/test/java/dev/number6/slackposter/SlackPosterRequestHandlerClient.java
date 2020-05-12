@@ -10,7 +10,6 @@ import javax.inject.Named;
 @FunctionClient
 public interface SlackPosterRequestHandlerClient {
 
-    @Named("slack-poster")
     Single<String> apply(@Body DynamodbEvent event);
 
 }

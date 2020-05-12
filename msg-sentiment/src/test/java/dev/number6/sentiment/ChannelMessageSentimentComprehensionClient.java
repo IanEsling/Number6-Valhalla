@@ -10,7 +10,6 @@ import javax.inject.Named;
 @FunctionClient
 public interface ChannelMessageSentimentComprehensionClient {
 
-    @Named("channel-messages")
     Single<String> apply(@Body SNSEvent event);
 
 }

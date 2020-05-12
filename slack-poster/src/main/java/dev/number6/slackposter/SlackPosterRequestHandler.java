@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import java.util.Map;
 import java.util.function.Function;
 
-@FunctionBean("slack-poster")
+@FunctionBean
 public class SlackPosterRequestHandler extends FunctionInitializer implements Function<DynamodbEvent, String> {
 
     private static final Logger LOG = LoggerFactory.getLogger(SlackPosterRequestHandler.class);
