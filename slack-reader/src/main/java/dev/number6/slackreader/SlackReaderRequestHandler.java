@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import java.util.Map;
 import java.util.function.Function;
 
-@FunctionBean
+@FunctionBean("slack-reader")
 public class SlackReaderRequestHandler extends FunctionInitializer implements Function<Map<String, Object>, String> {
 
     private static final Logger LOG = LoggerFactory.getLogger(SlackReaderRequestHandler.class);

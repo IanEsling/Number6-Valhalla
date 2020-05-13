@@ -10,5 +10,6 @@ import java.util.Map;
 @FunctionClient
 public interface SlackReaderRequestHandlerClient {
 
+    @Named("slack-reader")
     Single<String> apply(@Body Map<String, Object> event);
 }
