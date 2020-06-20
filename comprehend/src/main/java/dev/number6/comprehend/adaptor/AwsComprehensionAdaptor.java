@@ -7,6 +7,7 @@ import dev.number6.comprehend.results.PresentableEntityResults;
 import dev.number6.comprehend.results.PresentableKeyPhrasesResults;
 import dev.number6.comprehend.results.PresentableSentimentResults;
 import dev.number6.message.ChannelMessages;
+import io.micronaut.context.annotation.Requires;
 
 import javax.inject.Singleton;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Singleton
+//@Requires(env = {"test", "live"})
 public class AwsComprehensionAdaptor implements ComprehensionPort {
 
     private final AwsComprehendClient awsComprehendClient;
